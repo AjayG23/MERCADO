@@ -10,4 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="css/styles.css">
+    <!-- FONT AWSOME -->
+    <script src="https://kit.fontawesome.com/6b4e783e26.js" crossorigin="anonymous"></script>
 </head>
