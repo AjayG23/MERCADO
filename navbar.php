@@ -1,6 +1,13 @@
 
 
-<?php $var="Y";?>
+<?php 
+$logged = "N";
+if(isset($_SESSION['user_id'])){
+    $logged = "Y";
+  }
+  else{
+    $logged = "N";
+  }?>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"  >
   <a class="navbar-brand" href="#"><img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="" id="icon" style="height:20px"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,24 +42,29 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:500px !important ">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+      
     <ul class="navbar-nav ml-auto">
-          <?php if($var!="Y")
+    <li class="nav-item">
+      
+      <a class="nav-link mr-5" href="seller-signup.php">Become A Seller</a>
+    </li>
+          <?php if($logged!="Y")
           {?>
          <li class="nav-item active">
-            <a class="btn btn-primary" href="#" role="button">Login</a>
+            <a class="btn btn-primary" href="login.php" role="button">Login</a>
         </li> 
           <?php } else{?>
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Ajay
+          <?php echo $user_name; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">My Account</a>
           <a class="dropdown-item" href="#">My Wishlist</a>
           <a class="dropdown-item" href="#">My Orders</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="logout.php">Logout</a>
         </div>
       </li>
       <?php }?>

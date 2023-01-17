@@ -1,6 +1,6 @@
 <?php
 include "dbconnect.php";
-$page_title = "MERCADO | LOGIN";
+$page_title = "MERCADO | SELLER-SIGNUP";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,18 +12,16 @@ $page_title = "MERCADO | LOGIN";
     <section id="login">
         <div class="container">
             <div class="row login-row">
-                <div class="col-lg-6 login-left signup-text">
-                    <img src="img/design/man_jump.jpg" alt="">
-                    <p id="signup-content">Get Access To Your Orders <br>
-                                           Wishlists And Recomendations</p>
-                    <a class="btn btn-primary" href="#" onclick="showSignForm()" role="button" id="sign-button" >SIGN UP</a>
-                </div>
                 
-                <div class="col-lg-6 login-left signup-form ">
+                
+            <div class="col-lg-6 login-left signup-form ">
                   <h3>SIGN UP FORM</h3>
                 <form class="login-form signup-details">
                       <div class="form-group">
                         <input type="text" class="form-control" name="user_name" placeholder="Enter Name">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" class="form-control"  name="unit_name" placeholder="Enter Unit Name">
                       </div>
                       <div class="form-group">
                         <input type="email" class="form-control" name="email" placeholder="Email">
@@ -41,27 +39,13 @@ $page_title = "MERCADO | LOGIN";
                     <button type="submit" class="btn btn-primary" id="signup-button">Submit</button>
                   </form>
                 </div>
-                <div class="col-lg-6 login-right">
-                  <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="">
-                  <form class="login-form">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control"  name ="email" placeholder="Enter email">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                      </div>
-                      <p id="login-response"></p>
-                    <button type="submit" class="btn btn-primary" id="login-button">Login</button>
-                  </form>
-                  </div>
+                
             </div>
         </div>
     </section>
 
 <?php include "scripts.php"; ?>
-<script src="js/login.js"></script>
+<script src="js/seller-signup.js"></script>
 </body>
 </html>
 <?php
