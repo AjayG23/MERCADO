@@ -71,12 +71,16 @@ $(document).ready(function(){
         xhr.open('POST', 'submit-login.php', true);
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xhr.onload = function () {
+            console.log(xhr.responseText);
             var resp_json = JSON.parse(xhr.responseText);
             if (resp_json.status == "success") {
                 console.log("Login Success");
                 document.getElementById("login-response").innerHTML = "";
                 window.location.replace("index.php");
 
+            }
+            else if(resp_json.status=="verify"){
+                window.location.replace("verification.php");
             }
             else{
                 document.getElementById("login-response").innerHTML = resp_json.status;
