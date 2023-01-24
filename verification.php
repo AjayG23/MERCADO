@@ -2,11 +2,9 @@
 include "session-start.php";
 include "dbconnect.php";
 include "functions.php";
+include "universal-codes.php";
 $page_title = "MERCADO|Verification";
-if(isset($_SESSION['user_id'])){
-    $user_name = usernameFromUserid($_SESSION['user_id']);
-    $logged = "Y";
-    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -39,7 +39,7 @@ while($row = mysqli_fetch_assoc($result))
        					$result3 = mysqli_query($con, $sql3);
 					}
 				}else{
-					$sql3 = "INSERT INTO verification VALUES ('$user_id', $otp, $date_time)";
+					$sql3 = "INSERT INTO verification (user_id, otp, date_time) VALUES ('$user_id', $otp, $date_time)";
 					$result3 = mysqli_query($con, $sql3);
 				}
                                 

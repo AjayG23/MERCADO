@@ -1,11 +1,16 @@
 <?php
+include "session-start.php";
 include "dbconnect.php";
+include "universal-codes.php";
+
 $page_title = "MERCADO | LOGIN";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "head.php"; ?>
+<?php include "head.php";
+include "universal-codes.php"; ?>
 
 <body>
     <?php include "navbar.php";?>

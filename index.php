@@ -3,12 +3,8 @@ include "session-start.php";
 
 include "dbconnect.php";
 include "functions.php";
-$page_title = "HOME";
-
-if(isset($_SESSION['user_id'])){
-    $user_name = usernameFromUserid($_SESSION['user_id']);
-    $logged = "Y";
-    }
+include "universal-codes.php";
+$page_title = "MERCADO|HOME";
 
 ?>
 <!DOCTYPE html>
