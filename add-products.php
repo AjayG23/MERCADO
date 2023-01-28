@@ -20,10 +20,10 @@ $page_title = "MERCADO|Add-Products";
                             <li class="breadcrumb-item active" aria-current="page">Add Products</li>
 
                         </ol>
-                    </nav>
+                    </nav> 
                 </div>
                 <div class="col-lg-12">
-                <form action="submit-add-products.php" method="post">
+                <form action="submit-add-products.php" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="form-group col-md-8">
                         <label>Product Name</label>
@@ -51,7 +51,7 @@ $page_title = "MERCADO|Add-Products";
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Product Discription</label>
-                        <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="Enter discription" required></textarea>
+                        <textarea name="description" id="" cols="30" rows="7" class="form-control" placeholder="Enter discription" required></textarea>
                     </div>
                 </div>
                 <div class="form-row">
@@ -68,7 +68,12 @@ $page_title = "MERCADO|Add-Products";
                         <input type="text" name="quantity" class="form-control" placeholder="Enter Product Quantity" required><br>
                     </div>
                 </div>
-                
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="">Upload DP</label>
+                        <input type="file" name="fileToUpload" id="fileToUpload" required>
+                    </div>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Add Product</button>
                 </form>

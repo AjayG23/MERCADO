@@ -1,16 +1,8 @@
 <?php
 include "session-start.php";
 include "dbconnect.php";
-$seller_id = $_SESSION['user_id'];
-        $name=$_POST['name'];
-        $category_id=$_POST['category_id'];
-        $description=$_POST['description']; 
-        $mrp=$_POST['mrp'];
-        $discount=$_POST['discount'];
-        $quantity = $_POST['quantity'];
-        $product_id=uniqid (true);
-        $dp = "Y";
 
+$product_id = $_POST['product_id'];
 $uploadOk = 1;
 $target_file = basename($_FILES["fileToUpload"]["name"]);
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -36,14 +28,15 @@ if ($uploadOk == 0) {
   // if everything is ok, try to upload file
   } else {
     $temp = explode(".", $_FILES["fileToUpload"]["name"]);
-    $img_id = uniqid(true);
-    $newfilename = $img_id . '.' . end($temp);
+    $newfilename = uniqid(true) . '.' . end($temp);
     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "img/products/" . $newfilename);
-    $sql = "INSERT INTO product_images (img_id, product_id, name, dp) VALUES ('$img_id', '$product_id', '$newfilename', '$dp')";
+    $dp="Y";
+    $sql = "INSERT INTO product_images (product_id, name, dp) VALUES ('$product_id', '$newfilename', '$dp')";
     $result = mysqli_query($con, $sql);
-    $sql = "INSERT INTO products (product_id, seller_id, category_id, name, description,quantity, mrp, discount) VALUES ('$product_id', '$seller_id', '$category_id', '$name', '$description',$quantity, $mrp, $discount)";
-    $result = mysqli_query($con, $sql);
-    mysqli_close($con);
-    header('Location: seller-products.php');
+
   }
-      ?>
+  mysqli_close($con);
+  header('Location: seller-product-details.php?id='.$product_id);
+
+
+?>

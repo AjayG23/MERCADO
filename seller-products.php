@@ -3,6 +3,7 @@ include "session-start.php";
 include "dbconnect.php";
 include "functions.php";
 include "universal-codes.php";
+include "user-auth.php";
 $page_title = "MERCADO|Products";?>
 
 <!DOCTYPE html>
@@ -43,7 +44,7 @@ $page_title = "MERCADO|Products";?>
                         </thead>
                         <tbody>
                         <?php
-                        $sql1 = "SELECT * FROM products";
+                        $sql1 = "SELECT * FROM products WHERE seller_id='$user_id'";
                         $result1 = mysqli_query($con, $sql1);
                         if(mysqli_num_rows($result1)>0){
                             $i = 1;
@@ -64,7 +65,7 @@ $page_title = "MERCADO|Products";?>
                                     echo "<td>img</td>";
                                 
                                     echo "<td>";
-                                    echo "<a  href='show-more-products.php?id=" .$row['product_id'] ."' class='btn btn-success'> Show More </a>";
+                                    echo "<a  href='seller-product-details.php?id=" .$row['product_id'] ."' class='btn btn-success'> Show More </a>";
                                     // echo "<a  href='delete-products.php?id=" .$row['product_id'] ."'class='btn btn-primary'> Delete</a>";
                                     echo "</td>";
                                     echo "</tr>";
