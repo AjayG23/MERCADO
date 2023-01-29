@@ -112,7 +112,7 @@ $product_id = $_GET['id'];
                         <label for="file-upload" class="seller-image-upload">
                             <i class="fa fa-cloud-upload"></i> <span id="select-text">Select Image</span>
                         </label>
-                        <input id="file-upload" type="file" name="fileToUpload"  onchange="fileSelected()"required>
+                        <input id="file-upload" type="file" name="fileToUpload" onchange="fileSelected()"required>
                         <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
                         <input type="submit" value="Replace DP" name="submit" class="btn btn-success">
                     </form>

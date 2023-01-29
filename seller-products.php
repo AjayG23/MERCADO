@@ -38,7 +38,7 @@ $page_title = "MERCADO|Products";?>
                             <th scope="col">price</th>
                             <th scope="col">discount</th>
                             <th scope="col">Quantity</th>
-                            <th scope="col">image</th>
+                            <!-- <th scope="col">image</th> -->
                             <th scope="col">Options</th>
                             </tr>
                         </thead>
@@ -62,7 +62,7 @@ $page_title = "MERCADO|Products";?>
                                     echo "<td>".$row["discount"]."</td>";
                                     echo "<td>".$row["quantity"]."</td>";
 
-                                    echo "<td>img</td>";
+                                    //echo "<td>img</td>";
                                 
                                     echo "<td>";
                                     echo "<a  href='seller-product-details.php?id=" .$row['product_id'] ."' class='btn btn-success'> Show More </a>";

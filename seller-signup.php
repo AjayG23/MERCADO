@@ -1,5 +1,8 @@
 <?php
+include "session-start.php";
 include "dbconnect.php";
+include "functions.php";
+include "universal-codes.php";
 $page_title = "MERCADO | SELLER-SIGNUP";
 ?>
 <!DOCTYPE html>
