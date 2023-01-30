@@ -24,7 +24,7 @@
       
       <li class="nav-item">
       
-        <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
+        <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
       </li>
       
       

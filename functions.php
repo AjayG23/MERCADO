@@ -45,5 +45,32 @@ function dpImgFromProductId($product_id)
     return $img_name ;
 }
 
+function productNameFromProductId($product_id)
+{
+    include "dbconnect.php";
+ 
+    $sql = "SELECT name FROM products WHERE product_id='$product_id'";
+    $result = mysqli_query($con, $sql);
 
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        
+        $product_name = $row["name"];
+    }
+    return $product_name ;
+}
+function sellerNameFromSellerId($seller_id)
+{
+    include "dbconnect.php";
+ 
+    $sql = "SELECT user_name FROM users WHERE user_id='$seller_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        
+        $seller_name = $row["user_name"];
+    }
+    return $seller_name ;
+}
 ?>
