@@ -29,7 +29,6 @@ function confirmDelete(id){
         }
     }
     xhr.send(params);
- 
 }
 
 function fileSelected()

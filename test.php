@@ -1,34 +1,19 @@
-
-    
-
-
 <?php
-// $member_id = uniqid (true);
-// echo $member_id;
-// echo "<br>";
-// $member_id = uniqid (true);
-// echo $member_id;
+include "session-start.php";
 include "dbconnect.php";
-$district_id = uniqid (true);
-$state_name = "Kasargod";
+include "functions.php";
+include "universal-codes.php";
+ $sql5 = "SELECT * FROM order_total ORDER BY order_no DESC LIMIT 1";
+ $result5 = mysqli_query($con, $sql5);
+ if(mysqli_num_rows($result5)>0){
+     $row5 = mysqli_fetch_assoc($result5);
+     $order_no = $row5['order_no'];
+     $order_no++;
+     echo "if worked!";
+ }else{
+     $order_no = 10000;
+     echo "else worked!";
+ }
+echo $order_no;
 
-$sql = "INSERT INTO district (district_id, state_id, district_name) VALUES ('$district_id','163cc171bae085', '$state_name')";
-$result = mysqli_query($con, $sql);
-
-//echo "hello";
-
-            
-                        
-                    // $sql = "SELECT name FROM category";
-                    // $result = mysqli_query($con, $sql);
-                    // if(mysqli_num_rows($result)>0){
-    
-                    // while($row = mysqli_fetch_assoc($result))
-                    //      {          
-                    //           echo $row["name"]."<br>";
-                            
-                                    
-
-                    //      } }
-                           ?>
-
+?>

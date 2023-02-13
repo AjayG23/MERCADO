@@ -20,6 +20,7 @@ while($row = mysqli_fetch_assoc($result))
             
             $_SESSION["user_id"]=$row["user_id"];
             $_SESSION["user_type"]=$row["user_type"];
+			$user_type = $_SESSION["user_type"];
 			$verified=$row["verified"];
 			if($verified=="N")
 			{
@@ -61,7 +62,7 @@ $status =  "Username and Password is Wrong";
 if($flag==1)
 $status=  "Wrong Password";
 
-$resp_json = array('status' => "$status");
+$resp_json = array('status' => "$status",'user_type'=>"$user_type");
 echo json_encode($resp_json);
 mysqli_close($con);
 ?>

@@ -4,7 +4,25 @@ include "session-start.php";
 include "dbconnect.php";
 include "functions.php";
 include "universal-codes.php";
+
 $product_id = $_GET['id'];
+
+
+//recently viewed code
+$sql = "SELECT * FROM recently_viewed WHERE product_id='$product_id' AND user_id='$user_id'";
+$result = mysqli_query($con, $sql);
+$date_time = strtotime("now");
+if(mysqli_num_rows($result)>0){
+    $row = mysqli_fetch_assoc($result);
+    $recent_id = $row['recent_id'];
+    $sql1 = "UPDATE recently_viewed SET date_time=$date_time WHERE recent_id='$recent_id'";
+    $result1 = mysqli_query($con, $sql1); 
+}else{
+    $recent_id = uniqid(true);
+    $sql2 = "INSERT INTO recently_viewed (recent_id, product_id, user_id, date_time) VALUES ('$recent_id', '$product_id', '$user_id', $date_time)";
+    $result2 = mysqli_query($con, $sql2); 
+}
+
 $product_name = productNameFromProductId($product_id);
 $page_title = 'MERCADO|'.$product_name; 
 ?>
@@ -66,7 +84,7 @@ $page_title = 'MERCADO|'.$product_name;
                         <h3><?php echo $product_name;?></h3>
                         <p><span class="span-sp"><?php echo '₹'.$sp;?></span><span class="span-mrp"><s><?php echo '₹'.$mrp;?></s></span><span class="span-disc"><?php echo $discount.'% Off';?></span></p>
                         <p>Inclusive of all taxes</p>
-                        <?php  $seller_name = sellerNameFromSellerId($seller_id);?>
+                        <?php  $seller_name = ucwords(unitDetailsFromUserId($seller_id,'unit_name'));?>
                         <table class="table" id="product-details-table">
                             <tbody>
                                 <tr>
@@ -83,8 +101,39 @@ $page_title = 'MERCADO|'.$product_name;
                                 </tr>
                             </tbody>
                         </table>
-                        <a href="#" class="btn btn-primary"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
-                        <a href="#" class="btn btn-secondary"><i class="fa-solid fa-cart-shopping"></i> Add To Wishlist</a>
+                        <?php 
+                        if($logged=='Y'){
+                            $is_in_cart = checkInCart($product_id,$user_id);
+                            if($is_in_cart==0){ 
+                            ?>
+                            <a href="#" class="btn btn-primary" onclick="addToCart(<?php echo '\''.$product_id.'\'';?>)" ><i class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
+                            <?php    
+                            }else{
+                            ?> 
+                            <a href="cart.php" class="btn btn-primary"  ><i class="fa-solid fa-cart-shopping"></i> Go To Cart</a>
+                            <?php
+                            }
+                            
+                            $is_in_wishlist = checkInWishlist($product_id,$user_id);
+                            if($is_in_wishlist==0){ 
+                            ?>
+                            <a href="#" class="btn btn-secondary"onclick="addToWishlist(<?php echo '\''.$product_id.'\'';?>)"><i class="fa-solid fa-cart-shopping"></i> Add To Wishlist</a>
+                            <?php    
+                            }else{
+                            ?> 
+                            <a href="wishlist.php" class="btn btn-secondary"  ><i class="fa-solid fa-cart-shopping"></i> Go To Wishlist</a>
+                            <?php
+                            }
+                        }else{
+                            ?>
+                                <a href="login.php" class="btn btn-primary" ><i class="fa-solid fa-cart-shopping"></i> Go To Cart</a>
+                                <a href="login.php" class="btn btn-secondary"  ><i class="fa-solid fa-cart-shopping"></i> Go To Wishlist</a>
+
+                            <?php
+
+                        }
+                        ?>
+                        
 
                     </div>
                 </div>
@@ -93,6 +142,7 @@ $page_title = 'MERCADO|'.$product_name;
     </section>
 
 <?php include "scripts.php"; ?>
+<script src="js/product-details.js"></script>
 </body>
 </html>
 <?php

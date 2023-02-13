@@ -76,8 +76,11 @@ $(document).ready(function(){
             if (resp_json.status == "success") {
                 console.log("Login Success");
                 document.getElementById("login-response").innerHTML = "";
+                if(resp_json.user_type==="C"){
                 window.location.replace("index.php");
-
+                }else{
+                    window.location.replace("seller-home.php");
+                }
             }
             else if(resp_json.status=="verify"){
                 window.location.replace("verification.php");

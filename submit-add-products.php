@@ -1,6 +1,7 @@
 <?php
 include "session-start.php";
 include "dbconnect.php";
+include "functions.php";
 $seller_id = $_SESSION['user_id'];
         $name=$_POST['name'];
         $category_id=$_POST['category_id'];
@@ -8,6 +9,7 @@ $seller_id = $_SESSION['user_id'];
         $mrp=$_POST['mrp'];
         $discount=$_POST['discount'];
         $quantity = $_POST['quantity'];
+        $tax_slab = $_POST['tax_slab'];
         $product_id=uniqid (true);
         $dp = "Y";
 
@@ -41,7 +43,7 @@ if ($uploadOk == 0) {
     move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], "img/products/" . $newfilename);
     $sql = "INSERT INTO product_images (img_id, product_id, name, dp) VALUES ('$img_id', '$product_id', '$newfilename', '$dp')";
     $result = mysqli_query($con, $sql);
-    $sql = "INSERT INTO products (product_id, seller_id, category_id, name, description,quantity, mrp, discount) VALUES ('$product_id', '$seller_id', '$category_id', '$name', '$description',$quantity, $mrp, $discount)";
+    $sql = "INSERT INTO products (product_id, seller_id, category_id, name, description,quantity, mrp, discount, tax_slab) VALUES ('$product_id', '$seller_id', '$category_id', '$name', '$description',$quantity, $mrp, $discount, $tax_slab)";
     $result = mysqli_query($con, $sql);
     mysqli_close($con);
     header('Location: seller-products.php');

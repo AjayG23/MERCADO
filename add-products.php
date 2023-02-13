@@ -30,6 +30,7 @@ $page_title = "MERCADO|Add-Products";
                         <input type="text" name="name" class="form-control" placeholder="Enter Product Name" required>
                     </div>
                     <div class="form-group col-md-4">
+                       
                         <label>Select Category</label>
                         <select name="category_id" class="form-control" required>
                             <option value="">Select Category</option>
@@ -46,6 +47,8 @@ $page_title = "MERCADO|Add-Products";
                             }}
                             ?>
                         </select>
+                        
+                   
                     </div>
                 </div>
                 <div class="form-row">
@@ -66,6 +69,17 @@ $page_title = "MERCADO|Add-Products";
                     <div class="form-group col-md-4">
                         <label for="">Product Quantity</label>
                         <input type="text" name="quantity" class="form-control" placeholder="Enter Product Quantity" required><br>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <label>Select Tax Slab</label>
+                        <select name="tax_slab" id="" class="form-control">
+                        <option value="">Select Tax Slab</option>
+                            <option value="5">5%</option>
+                            <option value="5">12%</option>
+                            <option value="5">18%</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">

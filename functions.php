@@ -73,4 +73,89 @@ function sellerNameFromSellerId($seller_id)
     }
     return $seller_name ;
 }
+
+function checkInCart($product_id,$user_id){
+    $is_in_cart = 0;
+    include "dbconnect.php";
+    $sql = "SELECT * FROM cart WHERE user_id='$user_id' AND product_id='$product_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+       $is_in_cart = 1;
+
+    }
+    return $is_in_cart ;   
+}
+
+function checkInWishlist($product_id,$user_id){
+    $is_in_wishlist = 0;
+    include "dbconnect.php";
+    $sql = "SELECT * FROM wishlist WHERE user_id='$user_id' AND product_id='$product_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+       $is_in_wishlist = 1;
+
+    }
+    return $is_in_wishlist ;   
+}
+
+function stockFromProductId($product_id){
+    include "dbconnect.php";
+    $sql = "SELECT quantity FROM products WHERE product_id='$product_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        $quantity = $row["quantity"];
+    }
+    return $quantity ;
+}
+
+function stateNameFromStateId($state_id){
+    include "dbconnect.php";
+    $sql = "SELECT state_name FROM states WHERE state_id='$state_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        $state_name = $row["state_name"];
+    }
+    return $state_name ;
+}
+function districtNameFromDistrictId($district_id){
+    include "dbconnect.php";
+    $sql = "SELECT district_name FROM district WHERE district_id='$district_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        $district_name = $row["district_name"];
+    }
+    return $district_name ;
+}
+
+function unitDetailsFromUserId($user_id,$col_name){
+    include "dbconnect.php";
+    $sql = "SELECT $col_name FROM unit_details WHERE user_id='$user_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        $col_value = $row["$col_name"];
+    }
+    return $col_value ;
+}
+
+function orderTotalDetailsFromOrderId($order_id,$col_name){
+    include "dbconnect.php";
+    $sql = "SELECT $col_name FROM order_total WHERE order_id='$order_id'";
+    $result = mysqli_query($con, $sql);
+
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        $col_value = $row["$col_name"];
+    }
+    return $col_value ;
+}
 ?>

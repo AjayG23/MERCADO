@@ -23,8 +23,25 @@
       </li>
       
       <li class="nav-item">
-      
-        <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+      <?php
+      if($logged=='Y'){
+        ?>
+         <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i> Cart
+        <?php
+        $sql = "SELECT * FROM cart WHERE user_id='$user_id'";
+        $result = mysqli_query($con, $sql);
+        if(mysqli_num_rows($result)>0){
+            $i = mysqli_num_rows($result);
+            echo ' [ '.$i.' ] ';
+        }
+        ?></a>
+        <?php
+      }else{
+        ?>
+          <a class="nav-link" href="login.php"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+        <?php
+      }?>
+       
       </li>
       
       
@@ -67,7 +84,7 @@
  //seller navbar
 else if($user_type=="S"){?>
   <nav class="navbar navbar-expand-lg navbar-light fixed-top"  >
-  <a class="navbar-brand" href="#"><img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="" id="icon" style="height:20px"></a>
+  <a class="navbar-brand" href="seller-home.php"><img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="" id="icon" style="height:20px"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -85,8 +102,8 @@ else if($user_type=="S"){?>
           My Orders
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Pending Orders</a>
-          <a class="dropdown-item" href="#">Processed Orders</a>
+          <a class="dropdown-item" href="seller-pending-orders.php">Pending Orders</a>
+          <a class="dropdown-item" href="seller-processed-orders.php">Processed Orders</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
