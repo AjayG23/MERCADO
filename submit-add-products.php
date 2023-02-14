@@ -4,7 +4,7 @@ include "dbconnect.php";
 include "functions.php";
 $seller_id = $_SESSION['user_id'];
         $name=$_POST['name'];
-        $category_id=$_POST['category_id'];
+        $category_id=$_POST['subcategory_id'];
         $description=$_POST['description']; 
         $mrp=$_POST['mrp'];
         $discount=$_POST['discount'];

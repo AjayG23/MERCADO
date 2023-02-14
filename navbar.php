@@ -70,7 +70,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">My Account</a>
           <a class="dropdown-item" href="#">My Wishlist</a>
-          <a class="dropdown-item" href="#">My Orders</a>
+          <a class="dropdown-item" href="my-orders.php">My Orders</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout.php">Logout</a>
         </div>

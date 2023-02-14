@@ -4,7 +4,8 @@ include "dbconnect.php";
 include "functions.php";
 include "universal-codes.php";
 $order_id = uniqid(true);
-$date_time = strtotime("now");
+// $date_time = strtotime("now");
+$date_time = 1676185248;
 $total_amount = 0;
 $sql = "SELECT * FROM cart WHERE user_id='$user_id'";
 $result = mysqli_query($con, $sql);
@@ -33,8 +34,10 @@ if(mysqli_num_rows($result)>0){
             $total_amount+=$net_amount;
             $total_quantity = $row1['quantity'];
             $new_quantity = $total_quantity - $quantity;
+            $purchase_date = date('Y-m-d', $date_time);
+            $category_id = $row1['category_id'];
         }
-      $sql2 = "INSERT INTO orders (order_id, product_id, product_name,seller_id, unit_no, unit_name, quantity, mrp, tax, rate, amount, discount, tax_amount, net_amount, date_time) VALUES ('$order_id', '$product_id', '$product_name','$seller_id', $unit_no, '$unit_name', $quantity, $mrp, $tax, $rate, $amount, $discount, $tax_amount, $net_amount, $date_time)";
+      $sql2 = "INSERT INTO orders (order_id, product_id, product_name,category_id, seller_id, unit_no, unit_name, quantity, mrp, tax, rate, amount, discount, tax_amount, net_amount, date_time, purchase_date) VALUES ('$order_id', '$product_id', '$product_name','$category_id','$seller_id', $unit_no, '$unit_name', $quantity, $mrp, $tax, $rate, $amount, $discount, $tax_amount, $net_amount, $date_time, '$purchase_date')";
       $result2 = mysqli_query($con, $sql2); 
 
       $sql3 = "UPDATE products SET quantity=$new_quantity WHERE product_id='$product_id' ";

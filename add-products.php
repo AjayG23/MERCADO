@@ -29,27 +29,6 @@ $page_title = "MERCADO|Add-Products";
                         <label>Product Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Enter Product Name" required>
                     </div>
-                    <div class="form-group col-md-4">
-                       
-                        <label>Select Category</label>
-                        <select name="category_id" class="form-control" required>
-                            <option value="">Select Category</option>
-                            <?php 
-                            $sql ="SELECT * FROM category"; 
-                            $result = mysqli_query($con, $sql);
-                            if(mysqli_num_rows($result)>0){
-                                while($row = mysqli_fetch_assoc($result)){
-                                $category_name = $row['name'];
-                                $category_id = $row['category_id'];
-                                ?>
-                            <option value="<?php echo $category_id; ?>" ><?php echo $category_name; ?> </option>
-                            <?php
-                            }}
-                            ?>
-                        </select>
-                        
-                   
-                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
@@ -72,14 +51,36 @@ $page_title = "MERCADO|Add-Products";
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                    <label>Select Tax Slab</label>
+                    <div class="form-group col-md-4">
+                        <label>Select Tax Slab</label>
                         <select name="tax_slab" id="" class="form-control">
                         <option value="">Select Tax Slab</option>
                             <option value="5">5%</option>
                             <option value="5">12%</option>
                             <option value="5">18%</option>
                         </select>
+                    </div>
+                    <div class="form-group col-md-4">  
+                       <label>Select Category</label>
+                       <select name="category_id" class="form-control" onchange="populateSubCategory(this.value)" required>
+                           <option value="">Select Category</option>
+                           <?php 
+                           $sql ="SELECT * FROM category WHERE parent_id IS NULL"; 
+                           $result = mysqli_query($con, $sql);
+                           if(mysqli_num_rows($result)>0){
+                               while($row = mysqli_fetch_assoc($result)){
+                               $category_name = $row['name'];
+                               $category_id = $row['category_id'];
+                               ?>
+                           <option value="<?php echo $category_id; ?>" ><?php echo $category_name; ?> </option>
+                           <?php
+                           }}
+                           ?>
+                       </select>
+                   </div>
+                   <div class="form-group col-md-4">
+                        <label>Select Sub Category</label>
+                        <select name="subcategory_id" class="form-control" id="subcategory_id" required></select>
                     </div>
                 </div>
                 <div class="form-row">
@@ -100,6 +101,8 @@ $page_title = "MERCADO|Add-Products";
         </div>
     </section>
 <?php include "scripts.php"?>
+<script src="js/add-products.js"></script>
+
 
 </body>
 </html>
