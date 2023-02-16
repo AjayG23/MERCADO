@@ -5,7 +5,7 @@ include "functions.php";
 include "universal-codes.php";
 $order_id = uniqid(true);
 // $date_time = strtotime("now");
-$date_time = 1676185248;
+$date_time = strtotime('2023-01-24 12:00');
 $total_amount = 0;
 $sql = "SELECT * FROM cart WHERE user_id='$user_id'";
 $result = mysqli_query($con, $sql);

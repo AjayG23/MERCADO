@@ -46,7 +46,7 @@ $page_title = "MERCADO | Pending Orders";
                         <tr class="cart-item-<?php echo $product_id;?>">
                             <td class="cart-img"><img src="img/products/<?php echo $dp;?>" alt=""></td>
                             <td class="cart-product-name">
-                                <p><a href="product-details.php?id=<?php echo $product_id;?>"><?php echo $product_name;?></a></p>
+                                <p><a href="seller-product-details.php?id=<?php echo $product_id;?>"><?php echo $product_name;?></a></p>
                                 <p>Order Date <?php echo $date_time;?></p>
                                 <p>Quantity <?php echo $quantity;?></p>
                                 
