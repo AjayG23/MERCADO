@@ -153,15 +153,16 @@ $page_title = "MERCADO|HOME";
                         <?php
                             $graph_2_label='';
                             $graph_2_values='';
-                            $sql = "SELECT COUNT(category_id) AS count_cat, category_id FROM orders WHERE seller_id='$user_id' GROUP BY category_id";
+                            $sql = "SELECT COUNT(category_id) AS count_cat,SUM(quantity) AS total_quantity, category_id FROM orders WHERE seller_id='$user_id' GROUP BY category_id";
                             $result = mysqli_query($con, $sql);
                             if(mysqli_num_rows($result)>0){
                                 while($row = mysqli_fetch_assoc($result))
                                 {
                                     $category_id = $row['category_id'];
                                     $count_cat = $row['count_cat'];
+                                    $total_quantity = $row['total_quantity'];
                                     $graph_2_label.='\''.categoryNameFromCategoryId($category_id).'\',';
-                                    $graph_2_values.=$count_cat.',';
+                                    $graph_2_values.=$total_quantity.',';
                                 }
                             }
 

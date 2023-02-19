@@ -9,7 +9,8 @@ $product_id = $_GET['id'];
 
 
 //recently viewed code
-$sql = "SELECT * FROM recently_viewed WHERE product_id='$product_id' AND user_id='$user_id'";
+if($logged=='Y'){
+    $sql = "SELECT * FROM recently_viewed WHERE product_id='$product_id' AND user_id='$user_id'";
 $result = mysqli_query($con, $sql);
 $date_time = strtotime("now");
 if(mysqli_num_rows($result)>0){
@@ -22,6 +23,8 @@ if(mysqli_num_rows($result)>0){
     $sql2 = "INSERT INTO recently_viewed (recent_id, product_id, user_id, date_time) VALUES ('$recent_id', '$product_id', '$user_id', $date_time)";
     $result2 = mysqli_query($con, $sql2); 
 }
+}
+
 
 $product_name = productNameFromProductId($product_id);
 $page_title = 'MERCADO|'.$product_name; 

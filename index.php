@@ -54,11 +54,15 @@ $page_title = "MERCADO|HOME";
                     </div>
                 </div>
                 <?php   $i=1;
-                        $sql = "SELECT * FROM products WHERE category_id='163cbc255dc515' LIMIT 3";
+                        $sql1 = "SELECT category_id FROM category WHERE parent_id = '163cbc255dc515'";
+                        $result1 = mysqli_query($con, $sql1);
+                        if(mysqli_num_rows($result1)>0){
+                            while($row1 = mysqli_fetch_assoc($result1))
+                            {
+                                $category_id = $row1['category_id'];
+                        $sql = "SELECT * FROM products WHERE category_id='$category_id'";
                         $result = mysqli_query($con, $sql);
                         if(mysqli_num_rows($result)>0){
-                            
-
                             while($row = mysqli_fetch_assoc($result))
                             {
                                 $category_id = $row['category_id'];
@@ -82,7 +86,11 @@ $page_title = "MERCADO|HOME";
                         </div>
                     </a>
                 </div>
-                <?php $i++;}}?>
+                <?php $i++;
+                    if($i==3){
+                        break;
+                    }
+                }}}}?>
             </div>
              <div class="row product-row">
                 <div class="col-lg-3 product-col">
@@ -92,21 +100,28 @@ $page_title = "MERCADO|HOME";
                         <img src="img/design/index-bg.jpg" alt="">
                     </div>
                 </div>
-                <?php $sql = "SELECT * FROM products WHERE category_id='163cbc26f8cd86' LIMIT 3";
-                        $result = mysqli_query($con, $sql);
-                        if(mysqli_num_rows($result)>0){
-                            while($row = mysqli_fetch_assoc($result))
-                            {
-                                $category_id = $row['category_id'];
-                                $category_name = categoryNameFromCategoryId($category_id);
-                                $product_id = $row['product_id'];
-                                $product_name = $row['name'];
-                                $out = strlen($product_name) > 60 ? substr($product_name,0,60)."..." : $product_name;
-                                $mrp = $row['mrp'];
-                                $discount = $row['discount'];
-                                //rating also
-                                $product_dp = dpImgFromProductId($product_id);
-                                $sp = $mrp-($mrp *($discount/100));
+                <?php    $i = 1;
+                         $sql1 = "SELECT category_id FROM category WHERE parent_id = '163cbc26f8cd86'";
+                         $result1 = mysqli_query($con, $sql1);
+                         if(mysqli_num_rows($result1)>0){
+                             while($row1 = mysqli_fetch_assoc($result1))
+                             {////doubt
+                                 $category_id = $row1['category_id'];
+                                $sql = "SELECT * FROM products WHERE category_id='$category_id' ";
+                                $result = mysqli_query($con, $sql);
+                                if(mysqli_num_rows($result)>0){
+                                    while($row = mysqli_fetch_assoc($result))
+                                    {
+                                        $category_id = $row['category_id'];
+                                        $category_name = categoryNameFromCategoryId($category_id);
+                                        $product_id = $row['product_id'];
+                                        $product_name = $row['name'];
+                                        $out = strlen($product_name) > 60 ? substr($product_name,0,60)."..." : $product_name;
+                                        $mrp = $row['mrp'];
+                                        $discount = $row['discount'];
+                                        //rating also
+                                        $product_dp = dpImgFromProductId($product_id);
+                                        $sp = $mrp-($mrp *($discount/100));
                                 ?>
                 <div class="col-lg-3 product-col">
                     <a href="product-details.php?id=<?php echo $product_id;?>">
@@ -117,7 +132,11 @@ $page_title = "MERCADO|HOME";
                         </div>
                     </a>
                 </div>
-                <?php }}?>
+                <?php   $i++;
+                    if($i==3){
+                        break;
+                    }
+                    }}}}?>
             </div>
 
         
@@ -130,21 +149,29 @@ $page_title = "MERCADO|HOME";
                         <img src="img/design/index-bg.jpg" alt="">
                     </div>
                 </div>
-                <?php $sql = "SELECT * FROM products WHERE category_id='163cbc286b024c' LIMIT 3";
-                        $result = mysqli_query($con, $sql);
-                        if(mysqli_num_rows($result)>0){
-                            while($row = mysqli_fetch_assoc($result))
+                <?php 
+                        $i =1;
+                         $sql1 = "SELECT category_id FROM category WHERE parent_id = '163cbc286b024c' ";
+                        $result1 = mysqli_query($con, $sql1);
+                        if(mysqli_num_rows($result1)>0){
+                            while($row1 = mysqli_fetch_assoc($result1))
                             {
-                                $category_id = $row['category_id'];
-                                $category_name = categoryNameFromCategoryId($category_id);
-                                $product_id = $row['product_id'];
-                                $product_name = $row['name'];
-                                $out = strlen($product_name) > 60 ? substr($product_name,0,60)."..." : $product_name;
-                                $mrp = $row['mrp'];
-                                $discount = $row['discount'];
-                                //rating also
-                                $product_dp = dpImgFromProductId($product_id);
-                                $sp = $mrp-($mrp *($discount/100));
+                                $category_id = $row1['category_id'];
+                            $sql = "SELECT * FROM products WHERE category_id='$category_id' LIMIT 3";
+                            $result = mysqli_query($con, $sql);
+                            if(mysqli_num_rows($result)>0){
+                                while($row = mysqli_fetch_assoc($result))
+                                {
+                                    $category_id = $row['category_id'];
+                                    $category_name = categoryNameFromCategoryId($category_id);
+                                    $product_id = $row['product_id'];
+                                    $product_name = $row['name'];
+                                    $out = strlen($product_name) > 60 ? substr($product_name,0,60)."..." : $product_name;
+                                    $mrp = $row['mrp'];
+                                    $discount = $row['discount'];
+                                    //rating also
+                                    $product_dp = dpImgFromProductId($product_id);
+                                    $sp = $mrp-($mrp *($discount/100));
                                 ?>
                 <div class="col-lg-3 product-col">
                     <a href="product-details.php?id=<?php echo $product_id;?>">
@@ -155,7 +182,12 @@ $page_title = "MERCADO|HOME";
                         </div>
                     </a>
                 </div>
-                <?php }}?>
+                <?php 
+                     $i++;
+                     if($i==3){
+                         break;
+                     }
+                }}}}?>
             </div>
 
              <div class="row product-row">
@@ -166,21 +198,29 @@ $page_title = "MERCADO|HOME";
                         <img src="img/design/index-bg.jpg" alt="">
                     </div>
                 </div>
-                <?php $sql = "SELECT * FROM products WHERE category_id='163cbc29658df0' LIMIT 3";
-                        $result = mysqli_query($con, $sql);
-                        if(mysqli_num_rows($result)>0){
-                            while($row = mysqli_fetch_assoc($result))
-                            {
-                                $category_id = $row['category_id'];
-                                $category_name = categoryNameFromCategoryId($category_id);
-                                $product_id = $row['product_id'];
-                                $product_name = $row['name'];
-                                $out = strlen($product_name) > 60 ? substr($product_name,0,60)."..." : $product_name;
-                                $mrp = $row['mrp'];
-                                $discount = $row['discount'];
-                                //rating also
-                                $product_dp = dpImgFromProductId($product_id);
-                                $sp = $mrp-($mrp *($discount/100));
+                <?php 
+                    $i = 1;
+                    $sql1 = "SELECT category_id FROM category WHERE parent_id = '163cbc29658df0' ";
+                    $result1 = mysqli_query($con, $sql1);
+                    if(mysqli_num_rows($result1)>0){
+                        while($row1 = mysqli_fetch_assoc($result1))
+                        {
+                            $category_id = $row1['category_id'];
+                            $sql = "SELECT * FROM products WHERE category_id='$category_id' LIMIT 3";
+                            $result = mysqli_query($con, $sql);
+                            if(mysqli_num_rows($result)>0){
+                                while($row = mysqli_fetch_assoc($result))
+                                {
+                                    $category_id1 = $row['category_id'];
+                                    $category_name = categoryNameFromCategoryId($category_id1);
+                                    $product_id = $row['product_id'];
+                                    $product_name = $row['name'];
+                                    $out = strlen($product_name) > 60 ? substr($product_name,0,60)."..." : $product_name;
+                                    $mrp = $row['mrp'];
+                                    $discount = $row['discount'];
+                                    //rating also
+                                    $product_dp = dpImgFromProductId($product_id);
+                                    $sp = $mrp-($mrp *($discount/100));
                                 ?>
                 <div class="col-lg-3 product-col">
                     <a href="product-details.php?id=<?php echo $product_id;?>">
@@ -191,7 +231,12 @@ $page_title = "MERCADO|HOME";
                         </div>
                     </a>
                 </div>
-                <?php }}?>
+                <?php 
+                     $i++;
+                     if($i==3){
+                         break;
+                     }
+                }}}}?>
             </div>
             
             

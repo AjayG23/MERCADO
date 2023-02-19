@@ -6,6 +6,7 @@ include ('dbconnect.php');
 $email = $_POST["email"];
 $password = $_POST["password"];
 $flag=0;
+$user_type = "x";
 
 
 $sql = "SELECT * FROM users";

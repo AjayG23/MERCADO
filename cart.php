@@ -17,6 +17,7 @@ $page_title = "MERCADO | CART";
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    <h3>Cart</h3>
                     <input type="hidden" name="user_id" value="<?php echo $user_id;?>" id="user_id">
                 <table class="table">        
                     <tbody>

@@ -44,12 +44,25 @@ function deleteCartItem(product_id){
     }
     xhr.send(params);
 }
+function deleteWishlistItem(product_id){
+    var params = "product_id=" + product_id ;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'submit-delete-wishlist-item.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        var resp_json = JSON.parse(xhr.responseText);
+        if (resp_json.status == "ok") {
+            $('.cart-item-'+product_id).html("<td colspan='3'>"+resp_json.product_name+" was removed from wishlist!</td>")
+        }
+    }
+    xhr.send(params);
+}
 
 function populateDistrict(state_id){
     // console.log(state_id);
     var params = "state_id=" + state_id ;
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'retrieve-districts.php', true);
+    xhr.open('POST', 'retrieve-districts.php', true); 
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.onload = function () {
         var resp_json = xhr.responseText;
