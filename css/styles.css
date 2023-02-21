@@ -270,6 +270,14 @@ text-decoration: none;
     width: 200px;
     margin-left: 25px;
 }
+.row-rating-form{
+    background-color: #fff;
+    margin-top: 25px;
+    padding: 25px 10px;
+}
+.row-rating-form textarea{
+    width: 100%;
+}
 
 /*//////////////////cart///////////////////////*/
 #sec-cart{
@@ -278,7 +286,6 @@ text-decoration: none;
     height: 600px; */
     background-color: #f1f3f6;
     padding-bottom: 50px;
-
 }
 #sec-thankyou{
     display: none;
@@ -332,6 +339,8 @@ text-decoration: none;
     height: 250px;
     width: 100%;
 } */
+
+
 
 
 

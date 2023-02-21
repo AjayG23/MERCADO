@@ -158,4 +158,18 @@ function orderTotalDetailsFromOrderId($order_id,$col_name){
     }
     return $col_value ;
 }
+
+
+function computeOverallRating($product_id){
+    include "dbconnect.php";
+    $avg_rating = 0;
+    $sql = "SELECT AVG(rating) AS avg_rating FROM review WHERE product_id='$product_id'";
+    $result = mysqli_query($con, $sql);
+    if(mysqli_num_rows($result)>0){
+        $row = mysqli_fetch_assoc($result);
+        $avg_rating = $row["avg_rating"];
+    }
+    return $avg_rating ;
+
+}
 ?>
