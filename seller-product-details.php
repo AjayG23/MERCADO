@@ -87,8 +87,20 @@ $product_id = $_GET['id'];
 
                  <a  href='seller-products-update.php?id=<?php echo $product_id;?>' class='btn btn-success'> Update product </a>
                 </form>
+            </div>
+                <div class="col-lg-12">
+                <hr>
+                    <form class="add-stock">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Add Stock</label>
+                            <input type="text" name="quantity" class="form-control">
+                            <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
+                        </div>
+                    </div>
+                        <button type="submit" class="btn btn-primary add-stock-btn">Add Stock</button>
+                    </form>
                 </div>
-
             </div>
         </div>
     </section>

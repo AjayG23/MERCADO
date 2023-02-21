@@ -11,7 +11,12 @@ $seller_id = $_SESSION['user_id'];
         $quantity = $_POST['quantity'];
         $tax_slab = $_POST['tax_slab'];
         $product_id=uniqid (true);
+        $stock_id=uniqid (true);
         $dp = "Y";
+        $add_remove = "A";
+        $date_time = strtotime("now");
+        $stock_date = date('Y-m-d', $date_time);
+
 
 $uploadOk = 1;
 $target_file = basename($_FILES["fileToUpload"]["name"]);
@@ -44,6 +49,8 @@ if ($uploadOk == 0) {
     $sql = "INSERT INTO product_images (img_id, product_id, name, dp) VALUES ('$img_id', '$product_id', '$newfilename', '$dp')";
     $result = mysqli_query($con, $sql);
     $sql = "INSERT INTO products (product_id, seller_id, category_id, name, description,quantity, mrp, discount, tax_slab) VALUES ('$product_id', '$seller_id', '$category_id', '$name', '$description',$quantity, $mrp, $discount, $tax_slab)";
+    $result = mysqli_query($con, $sql);
+    $sql = "INSERT INTO stock_log (stock_id, product_id, seller_id, quantity, add_remove, date_time, stock_date ) VALUES ('$stock_id', '$product_id', '$seller_id', $quantity, '$add_remove', $date_time, '$stock_date')";
     $result = mysqli_query($con, $sql);
     mysqli_close($con);
     header('Location: seller-products.php');

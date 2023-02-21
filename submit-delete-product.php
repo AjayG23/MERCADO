@@ -20,6 +20,8 @@ include "universal-codes.php";
             }
             $sql = "DELETE FROM product_images WHERE product_id='$product_id'";
             $result = mysqli_query($con, $sql);
+            $sql = "DELETE FROM stock_log WHERE product_id='$product_id'";
+            $result = mysqli_query($con, $sql);
             
 $resp_json = array('status' => "ok");
 echo json_encode($resp_json);

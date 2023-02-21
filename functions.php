@@ -170,6 +170,6 @@ function computeOverallRating($product_id){
         $avg_rating = $row["avg_rating"];
     }
     return $avg_rating ;
-
 }
+
 ?>

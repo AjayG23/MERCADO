@@ -3,7 +3,9 @@
     padding: 0;
     font-family:'Roboto Condensed', sans-serif; 
 }
-
+html {
+    scroll-behavior: smooth;
+}
 #home
 {margin-top: 75px;
 height: 1500px;
@@ -340,6 +342,14 @@ text-decoration: none;
     width: 100%;
 } */
 
+/*//////////////////admin-home///////////////////////*/
+#sec-admin-home{
+    height: 1000px;
+}
+#sec-stats{
+    height: 600px;
+    background-color: #878787;
+}
 
 
 

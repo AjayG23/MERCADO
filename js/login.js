@@ -78,8 +78,10 @@ $(document).ready(function(){
                 document.getElementById("login-response").innerHTML = "";
                 if(resp_json.user_type==="C"){
                 window.location.replace("index.php");
-                }else{
+                }else if(resp_json.user_type==="S"){
                     window.location.replace("seller-home.php");
+                }else{
+                    window.location.replace("admin-home.php");
                 }
             }
             else if(resp_json.status=="verify"){

@@ -5,13 +5,12 @@ $(document).ready(function(){
         var product_name = $(this).find('input[name="name"]').val();
         var category_id = $(this).find('select[name="category_id"]').val();
         var description = $(this).find('textarea[name="description"]').val();
-        var quantity = $(this).find('input[name="quantity"]').val();
         var mrp = $(this).find('input[name="mrp"]').val();
         var discount = $(this).find('input[name="discount"]').val();
         var product_id = $(this).find('input[name="product_id"]').val();
 
          
-            var params = "product_name=" + product_name + "&category_id=" + category_id + "&description=" + description + "&quantity=" + quantity+ "&mrp=" + mrp+ "&discount=" + discount + "&product_id=" + product_id ;
+            var params = "product_name=" + product_name + "&category_id=" + category_id + "&description=" + description + "&mrp=" + mrp+ "&discount=" + discount + "&product_id=" + product_id ;
             var xhr = new XMLHttpRequest();
             xhr.open('POST', 'submit-seller-products-update.php', true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

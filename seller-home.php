@@ -27,8 +27,7 @@ $page_title = "MERCADO|HOME";
                             $sql = "SELECT SUM(net_amount) AS n_amount, purchase_date FROM orders WHERE seller_id='$user_id' AND purchase_date='$desired_date' GROUP BY purchase_date";
                             $result = mysqli_query($con, $sql);
                             if(mysqli_num_rows($result)>0){
-                                while($row = mysqli_fetch_assoc($result))
-                                {
+                                while($row = mysqli_fetch_assoc($result)){
                                     $purchase_date = $row['purchase_date'];
                                     $net_amount = $row['n_amount'];
                                 }

@@ -14,7 +14,11 @@ include "universal-codes.php";
 
 //     }
 //  }
-$start_date = strtotime('2023-01-10 12:00');
-echo $start_date;
+// $start_date = strtotime('2023-02-21 12:00');
+// echo $start_date;
+$d = "2022-02";
+echo date($d.'-01');
+echo date('2022-m-t');
+
 
 ?>

@@ -40,6 +40,26 @@ function fileSelected()
 
 function ndpFileSelected()
 {
-    $('#ndp-add-img').attr('src','img/design/add-img-selected.jpg');
-    
+    $('#ndp-add-img').attr('src','img/design/add-img-selected.jpg');   
 }
+
+$('.add-stock').on('submit', function(e) {
+    e.preventDefault();
+    
+    var product_id = $(this).find('input[name="product_id"]').val();
+    var quantity = $(this).find('input[name="quantity"]').val();
+    $('.add-stock-btn').html("Adding");
+
+    var params =  "product_id=" + product_id + "&quantity=" + quantity ;
+    console.log(params);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'submit-add-stock.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        var resp_json = JSON.parse(xhr.responseText);
+        if (resp_json.status == "ok") {
+            window.location.replace("seller-product-details.php?id="+product_id);
+        }
+    }
+    xhr.send(params);
+});

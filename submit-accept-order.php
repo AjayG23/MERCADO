@@ -7,6 +7,7 @@ include "universal-codes.php";
 $product_id = $_POST['product_id'];
 $order_id = $_POST['order_id'];
 $dispatched_date_time = strtotime("now");
+// $dispatched_date_time = strtotime('2022-11-13 12:00');
 $sql = "UPDATE orders SET order_status='A', dispatched_date_time=$dispatched_date_time WHERE product_id='$product_id' AND order_id='$order_id' ";
 $result = mysqli_query($con, $sql);           
 $resp_json = array('status' => "ok");

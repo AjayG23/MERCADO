@@ -9,10 +9,9 @@ include "universal-codes.php";
         $description=$_POST['description'];
         $mrp=$_POST['mrp'];
         $discount=$_POST['discount'];
-        $quantity = $_POST['quantity'];
         $product_id=$_POST['product_id'];
 
-        $sql = "UPDATE products SET name='$name', category_id='$category_id', description='$description', mrp=$mrp, discount=$discount, quantity=$quantity WHERE product_id='$product_id' ";
+        $sql = "UPDATE products SET name='$name', category_id='$category_id', description='$description', mrp=$mrp, discount=$discount WHERE product_id='$product_id' ";
               $result = mysqli_query($con, $sql);
 
             

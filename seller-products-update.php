@@ -126,10 +126,10 @@ $product_id = $_GET['id']
                         <label for="">Product Discount</label>
                         <input type="text" name="discount" class="form-control" value = "<?php echo $product_discount;?>" required><br>
                     </div>
-                    <div class="form-group col-md-4">
+                    <!-- <div class="form-group col-md-4">
                         <label for="">Product Quantity</label>
                         <input type="text" name="quantity" class="form-control" value = "<?php echo $product_quantity;?>" required><br>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div id="update-response"></div>

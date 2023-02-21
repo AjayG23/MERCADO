@@ -5,7 +5,7 @@ include "functions.php";
 include "universal-codes.php";
 $order_id = uniqid(true);
 $date_time = strtotime("now");
-// $date_time = strtotime('2023-01-24 12:00');
+// $date_time = strtotime('2023-02-21 12:00');
 $total_amount = 0;
 $sql = "SELECT * FROM cart WHERE user_id='$user_id'";
 $result = mysqli_query($con, $sql);
@@ -36,12 +36,17 @@ if(mysqli_num_rows($result)>0){
             $new_quantity = $total_quantity - $quantity;
             $purchase_date = date('Y-m-d', $date_time);
             $category_id = $row1['category_id'];
+            $stock_id = uniqid(true);
+            $add_remove = "R";
         }
       $sql2 = "INSERT INTO orders (order_id, product_id, product_name,category_id, seller_id, unit_no, unit_name, quantity, mrp, tax, rate, amount, discount, tax_amount, net_amount, date_time, purchase_date) VALUES ('$order_id', '$product_id', '$product_name','$category_id','$seller_id', $unit_no, '$unit_name', $quantity, $mrp, $tax, $rate, $amount, $discount, $tax_amount, $net_amount, $date_time, '$purchase_date')";
       $result2 = mysqli_query($con, $sql2); 
 
       $sql3 = "UPDATE products SET quantity=$new_quantity WHERE product_id='$product_id' ";
       $result3 = mysqli_query($con, $sql3);
+
+      $sql4 = "INSERT INTO stock_log (stock_id, product_id, seller_id, quantity, add_remove, date_time, stock_date ) VALUES ('$stock_id', '$product_id', '$seller_id', $quantity, '$add_remove', $date_time, '$purchase_date')";
+      $result4 = mysqli_query($con, $sql4);
      
     }
     $sql5 = "SELECT * FROM order_total ORDER BY order_no DESC LIMIT 1";
