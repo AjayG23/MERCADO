@@ -154,16 +154,8 @@ else if($user_type=="A"){?>
       <a class="nav-link" href="admin-total-sales.php"><i class="fa-solid fa-cart-shopping"></i>Sales Report</a>
       </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          My Orders
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="seller-pending-orders.php">Pending Orders</a>
-          <a class="dropdown-item" href="seller-processed-orders.php">Processed Orders</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+      <li>
+      <a class="nav-link" href="admin-total-stock.php"><i class="fa-solid fa-cart-shopping"></i>Stock Report</a>
       </li>
       
       

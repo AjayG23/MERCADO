@@ -56,8 +56,8 @@ $page_title = "MERCADO|Add-Products";
                         <select name="tax_slab" id="" class="form-control">
                         <option value="">Select Tax Slab</option>
                             <option value="5">5%</option>
-                            <option value="5">12%</option>
-                            <option value="5">18%</option>
+                            <option value="12">12%</option>
+                            <option value="18">18%</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">  

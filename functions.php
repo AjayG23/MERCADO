@@ -59,6 +59,7 @@ function productNameFromProductId($product_id)
     }
     return $product_name ;
 }
+
 function sellerNameFromSellerId($seller_id)
 {
     include "dbconnect.php";
@@ -170,6 +171,27 @@ function computeOverallRating($product_id){
         $avg_rating = $row["avg_rating"];
     }
     return $avg_rating ;
+}
+
+function stockOnDate($product_id,$stock_date){
+    include "dbconnect.php";
+    $stock = 0;
+    $sql = "SELECT * FROM stock_log WHERE product_id='$product_id' AND stock_date<='$stock_date' ORDER BY stock_date";
+    $result = mysqli_query($con, $sql);
+    if(mysqli_num_rows($result)>0){
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $add_remove =  $row['add_remove'];
+            $quantity = $row['quantity'];
+            if($add_remove=='A'){
+                $stock += $quantity;
+            }else{
+                $stock -= $quantity;
+            }
+
+        }
+    }
+    return $stock;
 }
 
 ?>

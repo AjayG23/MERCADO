@@ -3,36 +3,23 @@ include "session-start.php";
 include "dbconnect.php";
 include "functions.php";
 include "universal-codes.php";
-$page_title = "MERCADO|Sales Report";
-if(isset($_GET['my'])){
-    $my = $_GET['my'];
-}else{
-    $my = '2023-02';
-}
+$my = $_GET['my'];
+$start_date = date($my.'-01');
+$end_date = date("Y-m-t", strtotime($start_date));
+$page_title = 'Sales Report From '.date('d-M-Y',strtotime($start_date)).' To '.date('d-M-Y',strtotime($end_date));
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <?php include "head.php"; ?>
 
-<body>
-    <?php include "navbar.php";?>
+<body onload="window.print()">
     <section id="home">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 mb-4">
-                <label>Month/Year</label>
-                    <select onchange="selectMonthYear(this.value)" id="" class="form-control">
-                    <option value="2023-02">Select Month/Year</option>
-                        <option value="2022-11"<?php if($my=='2022-11')echo "selected";?>>November 2022</option>
-                        <option value="2022-12"<?php if($my=='2022-12')echo "selected";?>>December 2022</option>
-                        <option value="2023-01"<?php if($my=='2023-01')echo "selected";?>>January 2023</option>
-                        <option value="2023-02"<?php if($my=='2023-02')echo "selected";?>>February 2023</option>
-                        <!-- <option value="2023-03">March 2023</option> -->
-                    </select>
-                </div>
-                <div class="col-lg-12">
-                <table class="table" id="sales-table">
+            <div class="col-lg-12">
+                <h4><center>Sales Report From <?php echo date('d-M-Y',strtotime($start_date)).' To '.date('d-M-Y',strtotime($end_date));?></center></h4>
+                <table class="table mt-4" id="sales-table">
                         <thead>
                             <th>S No</th>
                             <th>Order No</th>
@@ -48,15 +35,12 @@ if(isset($_GET['my'])){
                         <?php
                             $s_no = 1;
                             $total_amt = 0;
-                            $start_date = date($my.'-01');
-                            $end_date = date("Y-m-t", strtotime($start_date));
-
+                            
                             $sql1 = "SELECT * FROM orders WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
                             $result1 = mysqli_query($con, $sql1);
                             if(mysqli_num_rows($result1)>0){
                                 while($row = mysqli_fetch_assoc($result1))
                                 {
-                                    
                                     $order_no = orderTotalDetailsFromOrderId($row['order_id'],'order_no');
                                     $product_name = $row['product_name'];
                                     $customer_name = usernameFromUserid(orderTotalDetailsFromOrderId($row['order_id'],'customer_id'));
@@ -66,7 +50,6 @@ if(isset($_GET['my'])){
                                     $purchase_date = $row['purchase_date'];
                                     $dispatched_date = date('Y-m-d',$row['dispatched_date_time']);
                                     $total_amt+=$net_amount;
-
                                     ?>
                                     <tr>
                                         <td><?php echo $s_no;?></td>
@@ -88,22 +71,13 @@ if(isset($_GET['my'])){
                     </table>
                     <h4>Total Amount : <?php echo $total_amt;?></h4>
                 </div>
-                <div class="col-lg-12">
-                    <center><a href="admin-print-sales.php?my=<?php echo $my;?>" class="btn btn-success">Print Report</a></center>
-                </div>
             </div>
         </div>
     </section>
 
 <?php include "scripts.php"; ?>
 <script>
-$(document).ready(function(){
-    $('#sales-table').dataTable();
-});
-
-function selectMonthYear(month_year){
-    window.location.replace("admin-total-sales.php?my="+month_year);
-}
+    setTimeout(function() { window.location.replace("admin-total-sales.php?my=<?php echo $my;?>"); }, 5000);
 </script>
 </body>
 </html>

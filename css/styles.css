@@ -341,6 +341,16 @@ text-decoration: none;
     height: 250px;
     width: 100%;
 } */
+#sec-seller-home{
+    background-color: #f1f3f6;
+    margin-top: 56px;
+    padding: 25px 0;
+}
+.seller-home-row{
+    background-color: #fff;
+    margin-bottom: 25px;
+    padding: 25px;
+}
 
 /*//////////////////admin-home///////////////////////*/
 #sec-admin-home{

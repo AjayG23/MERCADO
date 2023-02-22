@@ -13,10 +13,10 @@ $page_title = "MERCADO|HOME";
 
 <body>
     <?php include "navbar.php";?>
-    <section id="home">
+    <section id="sec-seller-home">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
+            <div class="row seller-home-row">
+                <div class="col-lg-8">
                     <?php 
                         $i = 0;
                         $graph_1_label='';
@@ -48,7 +48,7 @@ $page_title = "MERCADO|HOME";
                     
                 </div>
             </div>
-            <div class="row">
+            <div class="row seller-home-row">
 
               <?php //between operator
                 $today = date('Y-m-d',strtotime('now'));
@@ -82,6 +82,7 @@ $page_title = "MERCADO|HOME";
               }
             $sql = "SELECT COUNT(order_id) AS pending_no FROM orders WHERE seller_id='$user_id' AND order_status = 'P' GROUP BY order_status ";
                 $result = mysqli_query($con, $sql);
+                $pending_no = 0;
                 if(mysqli_num_rows($result)>0){
                     $row = mysqli_fetch_assoc($result);
                     $pending_no = $row['pending_no'];
@@ -117,7 +118,7 @@ $page_title = "MERCADO|HOME";
                 <p>1 Year</p>
               </div>
             </div>
-            <div class="row">
+            <div class="row seller-home-row">
               <div class="col-lg-6">
               <table class="table">        
                 <tbody>
