@@ -110,6 +110,7 @@ if(isset($_GET['start_date'])){
         </div>
     </section>
 <?php include "scripts.php"; ?>
+<script src="js/admin-total-stock.js"></script>
 </body>
 </html>
 <?php

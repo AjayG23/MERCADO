@@ -4,10 +4,14 @@ include "dbconnect.php";
 include "functions.php";
 include "universal-codes.php";
 $page_title = "MERCADO|Sales Report";
-if(isset($_GET['my'])){
-    $my = $_GET['my'];
+if(isset($_GET['start_date'])){
+    $start_date = $_GET['start_date'];    
+    $end_date = $_GET['end_date'];
+    $flag = 1;
 }else{
-    $my = '2023-02';
+    $flag = 0;    
+    $start_date = 0;    
+    $end_date = 0;
 }
 ?>
 <!DOCTYPE html>
@@ -20,17 +24,20 @@ if(isset($_GET['my'])){
     <section id="home">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 mb-4">
-                <label>Month/Year</label>
-                    <select onchange="selectMonthYear(this.value)" id="" class="form-control">
-                    <option value="2023-02">Select Month/Year</option>
-                        <option value="2022-11"<?php if($my=='2022-11')echo "selected";?>>November 2022</option>
-                        <option value="2022-12"<?php if($my=='2022-12')echo "selected";?>>December 2022</option>
-                        <option value="2023-01"<?php if($my=='2023-01')echo "selected";?>>January 2023</option>
-                        <option value="2023-02"<?php if($my=='2023-02')echo "selected";?>>February 2023</option>
-                        <!-- <option value="2023-03">March 2023</option> -->
-                    </select>
+                <div class="col-lg-12 mb-4">
+                    <form class="form-sales-data">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <input type="date" class="form-control" name="start_date" value="<?php echo $start_date;?>" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="date" class="form-control" name="end_date" value="<?php echo $end_date;?>" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="stock-button">Submit</button>
+                    </form>
                 </div>
+                <?php if($flag == 1){ ?>
                 <div class="col-lg-12">
                 <table class="table" id="sales-table">
                         <thead>
@@ -48,10 +55,7 @@ if(isset($_GET['my'])){
                         <?php
                             $s_no = 1;
                             $total_amt = 0;
-                            $start_date = date($my.'-01');
-                            $end_date = date("Y-m-t", strtotime($start_date));
-
-                            $sql1 = "SELECT * FROM orders WHERE purchase_date BETWEEN '$start_date' AND '$end_date'";
+                            $sql1 = "SELECT * FROM orders WHERE purchase_date BETWEEN '$start_date' AND '$end_date' ORDER BY purchase_date";
                             $result1 = mysqli_query($con, $sql1);
                             if(mysqli_num_rows($result1)>0){
                                 while($row = mysqli_fetch_assoc($result1))
@@ -65,8 +69,10 @@ if(isset($_GET['my'])){
                                     $net_amount = $row['net_amount'];
                                     $purchase_date = $row['purchase_date'];
                                     $dispatched_date = date('Y-m-d',$row['dispatched_date_time']);
+                                    if($dispatched_date=='1970-01-01'){
+                                        $dispatched_date = 'NYD';
+                                    }
                                     $total_amt+=$net_amount;
-
                                     ?>
                                     <tr>
                                         <td><?php echo $s_no;?></td>
@@ -89,21 +95,19 @@ if(isset($_GET['my'])){
                     <h4>Total Amount : <?php echo $total_amt;?></h4>
                 </div>
                 <div class="col-lg-12">
-                    <center><a href="admin-print-sales.php?my=<?php echo $my;?>" class="btn btn-success">Print Report</a></center>
+                    <center><a href="admin-print-sales.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>" class="btn btn-success">Print Report</a></center>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </section>
 
 <?php include "scripts.php"; ?>
+<script src="js/admin-total-sales.js"></script>
 <script>
 $(document).ready(function(){
     $('#sales-table').dataTable();
 });
-
-function selectMonthYear(month_year){
-    window.location.replace("admin-total-sales.php?my="+month_year);
-}
 </script>
 </body>
 </html>

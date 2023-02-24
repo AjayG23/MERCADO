@@ -1,3 +1,7 @@
+<div id="search-result">
+        <ul id="search-ul">
+        </ul>
+    </div>
 <?php if($user_type=="C"){?>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top"  >
   <a class="navbar-brand" href="index.php"><img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt="" id="icon" style="height:20px"></a>
@@ -47,8 +51,8 @@
       
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:500px !important ">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search-bar" aria-label="Search" style="width:500px !important ">
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
       
     <ul class="navbar-nav ml-auto">

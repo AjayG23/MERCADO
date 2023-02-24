@@ -3,9 +3,8 @@ include "session-start.php";
 include "dbconnect.php";
 include "functions.php";
 include "universal-codes.php";
-$my = $_GET['my'];
-$start_date = date($my.'-01');
-$end_date = date("Y-m-t", strtotime($start_date));
+$start_date = $_GET['start_date'];    
+$end_date = $_GET['end_date'];
 $page_title = 'Sales Report From '.date('d-M-Y',strtotime($start_date)).' To '.date('d-M-Y',strtotime($end_date));
 ?>
 <!DOCTYPE html>
@@ -77,7 +76,7 @@ $page_title = 'Sales Report From '.date('d-M-Y',strtotime($start_date)).' To '.d
 
 <?php include "scripts.php"; ?>
 <script>
-    setTimeout(function() { window.location.replace("admin-total-sales.php?my=<?php echo $my;?>"); }, 5000);
+    setTimeout(function() { window.location.replace("admin-total-sales.php?start_date=<?php echo $start_date;?>&end_date=<?php echo $end_date;?>"); }, 5000);
 </script>
 </body>
 </html>

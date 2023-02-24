@@ -115,11 +115,17 @@ function proceedToCheckOut(){
         }
     }
     xhr.send();
+    console.log("working");
 }
 
 $(document).ready(function(){
     console.log("ready");
     computeCartTotal();
 });
+
+function checkoutErrFn(){
+    $('.checkout-err').html("<h5>You Have an Item Out Of Stock In Your Cart. Please Remove To Proceed</h5>");
+
+}
 
 

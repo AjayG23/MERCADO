@@ -335,6 +335,10 @@ text-decoration: none;
     padding: 15px 0px;
     text-align: right;
 }
+.checkout-err{
+    color: red;
+    padding-top: 20px;
+}
 
 /*//////////////////seller-home///////////////////////*/
 /* .graph2-doughnut-box{
@@ -361,6 +365,30 @@ text-decoration: none;
     background-color: #878787;
 }
 
+/*//////////////////search-bar///////////////////////*/
+#search-result{
+
+    position: absolute;
+    top:45px;
+    left: 495px;
+    z-index: 1050;
+}
+#search-result ul{
+    list-style: none;
+}
+#search-result ul a{
+    text-decoration: none;
+    color: #000;
+}
+#search-result li{
+    padding: 5px;
+    background-color: #fff;
+    width: 500px;
+    border-bottom: 1px solid #e9ecef;
+}
+#search-result li:hover{
+    background-color: #f1f3f6;
+}
 
 
 
